@@ -1,0 +1,12 @@
+@{
+Layout = "_Layout";
+}
+<h1 class="my-3">Update Category</h1>
+<form class="form-group" action='/categories/update/@Model.Id' method='post'>
+    <label for="newName">Name
+      <input type="text" name="newName" class="form-control" id="newName" value="@Model.Name" required>
+    </label>
+    <br>
+    <button class="btn btn-success my-2" type="submit">Submit</button>
+    <a href="/categories" class="btn btn-secondary ml-2">Back to categories</a>
+</form>

@@ -38,7 +38,11 @@ namespace RecipeBox.Controllers
         public ActionResult UpdateForm(int recipeId)
         {
             Recipe foundRecipe = Recipe.Find(recipeId);
-            return View(foundRecipe);
+            List <string> tagColors = new List <string> {"primary", "secondary", "success", "danger", "warning", "info", "light", "dark"};
+            Dictionary <string, object> dict = new Dictionary<string, object>();
+            dict.Add("recipe", foundRecipe);
+            dict.Add("tagColors", tagColors);
+            return View(dict);
         }
         [HttpPost("/recipes/update/{recipeId}")]
         public ActionResult Update(int recipeId, string newName, string newInstructions, int newRating)
@@ -46,6 +50,14 @@ namespace RecipeBox.Controllers
             Recipe foundRecipe = Recipe.Find(recipeId);
             foundRecipe.Update(newName, newInstructions, newRating);
             return RedirectToAction("Details");
+        }
+        [HttpPost("/recipes/delete/{recipeId}")]
+        public ActionResult Delete(int recipeId)
+        {
+            Recipe deleteRecipe = Recipe.Find(recipeId);
+            deleteRecipe.Delete();
+
+            return RedirectToAction("Index");
         }
     }
 }

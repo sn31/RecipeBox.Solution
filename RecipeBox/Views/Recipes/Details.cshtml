@@ -2,10 +2,10 @@
 Layout = "_Layout";
 }
 
-<h1>Recipe of @Model["recipe"].Name</h1>
+<h1 class="mt-3">Recipe of @Model["recipe"].Name</h1>
 
-<button onclick="window.location.href='/'" class="btn btn-success">Go Home</button>
-<button onclick="window.location.href='/recipes'" class="btn btn-success ml-2">Go back to previous page</button><hr>
+<button onclick="window.location.href='/'" class="btn btn-secondary my-2">Go Home</button>
+<button onclick="window.location.href='/recipes'" class="btn btn-secondary ml-2 my-2">Go back to previous page</button><hr>
 <h3>Tags: 
   @{int i = 0;}
   @foreach (var category in @Model["recipe"].GetCategories())
