@@ -172,16 +172,16 @@ namespace RecipeBox.Models {
             conn.Open();
 
             MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"SELECT * FROM tags WHERE category_id = @categoryId;";
+            cmd.CommandText = @"SELECT tags.id, tags.category_id, categories.name, tags.recipe_id, recipes.name, recipes.instructions, recipes.rating FROM recipes JOIN tags ON recipes.id = tags.recipe_id JOIN categories ON tags.category_id = categories.id WHERE category_id = @categoryId;";
             cmd.Parameters.AddWithValue("@categoryId", this.Id);
             MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
 
             while (rdr.Read())
             {
-                int foundId = rdr.GetInt32(0);
-                string foundName = rdr.GetString(1);
-                string foundInstructions = rdr.GetString(2);
-                int foundRating = rdr.GetInt32(3);
+                int foundId = rdr.GetInt32(3);
+                string foundName = rdr.GetString(4);
+                string foundInstructions = rdr.GetString(5);
+                int foundRating = rdr.GetInt32(6);
 
                 Recipe foundRecipe = new Recipe(foundName, foundInstructions, foundRating, foundId);
                 allRecipes.Add(foundRecipe);
