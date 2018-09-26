@@ -97,7 +97,7 @@ namespace RecipeBox.Models
             int Id = rdr.GetInt32(0);
             string Name = rdr.GetString(1);
             string Instructions = rdr.GetString(2);
-            int Rating = rdr.GetInt32(2);
+            int Rating = rdr.GetInt32(3);
             Recipe foundRecipe = new Recipe(Name, Instructions, Rating, Id);
 
             conn.Close();
@@ -180,7 +180,7 @@ namespace RecipeBox.Models
             MySqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = @"SELECT categories.* FROM recipes
             JOIN tags ON (recipes.id = tags.recipe_id)
-            JOIN cetegories ON (tags.category_id = categories.id)
+            JOIN categories ON (tags.category_id = categories.id)
             WHERE recipes.id = @thisId;";
             cmd.Parameters.AddWithValue("@thisId",this.Id);
             MySqlDataReader rdr = cmd.ExecuteReader();
