@@ -1,0 +1,61 @@
+@{
+Layout = "_Layout";
+}
+
+<h1>Recipe Records</h1>
+
+<button onclick="window.location.href='/'" class="btn btn-success">Go Home</button><hr>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h6>Name</h6>
+        </div>
+        <div class="col">
+             <h6>Instructions</h6>
+        </div>
+        <div class="col">
+             <h6>Tags</h6>
+        </div>
+         <div class="col">
+             <h6>Rating</h6>
+        </div>
+        <div class="col">
+             <h6>Update Recipe</h6>
+        </div>
+        <div class="col">
+             <h6>Delete Recipe</h6>
+        </div>
+    </div>
+    @foreach(var recipe in @Model["recipes"])
+    {
+        <div class="row">
+            <div class="col">
+                <p>@recipe.Name</p>
+            </div>
+            <div class="col">
+                <p>@recipe.Instructions</p>
+            </div>
+            <div class="col">
+                @foreach(var category in @Model["categories"])
+                {
+                    <p>@category.categoryName</p>
+                }
+            </div>
+            <div class="col">
+                <p>@recipe.Rating</p>
+            </div>
+            <div class="col">
+               <form class="form-group" action='/recipes/update/@recipe.Id' method='get'>
+                   <button class="btn btn-info" type="submit">Update Recipe</button>
+               </form>
+            </div>
+            <div class="col">
+                <form class="form-group" action='/recipes/delete/@recipe.Id' method='post'>
+                   <button class="btn btn-danger" type="submit">Delete Recipe</button>
+               </form>
+            </div>
+        </div>
+
+    }
+    
+</div>
