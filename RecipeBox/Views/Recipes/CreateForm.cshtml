@@ -2,15 +2,15 @@
 Layout = "_Layout";
 }
 <h1>Add Recipe</h1>
-<form class="form-group" action='/stud' method='post'>
+<form class="form-group" action='/recipes' method='post'>
     <label>Recipe Name
         <input type="text" name="newName" class="form-control" required>
     </label><br>
     <label>Instructions
-        <textarea rows="4" col ="4" name="newInstruction" class="form-control" required></textarea>
+        <textarea rows="4" col ="4" name="newInstructions" class="form-control" required></textarea>
     </label><br>
     <label>Rating
-        <input type="number" name="newRating" class="form-control">
+        <input type="number" name="newRating" class="form-control" max="10" min="0">
     </label><br>
     <button class="btn btn-success" type="submit">Submit</button>
 </form>
