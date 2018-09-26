@@ -143,7 +143,7 @@ namespace RecipeBox.Models {
             }
         }
 
-        public List <Recipe> GetAllRecipes()
+        public List <Recipe> GetRecipes()
         {
             List <Recipe> allRecipes = new List <Recipe> {};
             MySqlConnection conn = DB.Connection();
