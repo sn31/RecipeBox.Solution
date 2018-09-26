@@ -1,0 +1,22 @@
+@{
+Layout = "_Layout";
+}
+
+<h1>Recipe of @Model["recipe"].Name</h1>
+
+<button onclick="window.location.href='/'" class="btn btn-success">Go Home</button>
+<button onclick="window.location.href='/recipes'" class="btn btn-success ml-2">Go back to previous page</button><hr>
+<h3>Tags: 
+  @{int i = 0;}
+  @foreach (var category in @Model["recipe"].GetCategories())
+  {
+    <a href="/categories/@category.Id" class='badge badge-@Model["tagColors"][@i]'>@category.Name</a>
+    i = (i > 7) ? 0: (i+1);
+  }
+</h3>
+@{string[] instructions = @Model["recipe"].Instructions.Split('\n');
+  foreach (string line in instructions)
+  {
+    <p>@line</p>
+  }
+}

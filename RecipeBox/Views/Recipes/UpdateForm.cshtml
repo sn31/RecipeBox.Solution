@@ -1,0 +1,16 @@
+@{
+Layout = "_Layout";
+}
+<h1>Update Recipe</h1>
+<form class="form-group" action='/recipes/update/@Model.Id' method='post'>
+    <label>New name
+        <input type="text" name="newName" class="form-control" value="@Model.Name" required>
+    </label><br>
+    <label for="newInstructions">New instructions</label>
+    <textarea rows="8" col ="8" name="newInstructions" class="form-control" id="newInstructions" required>@Model.Instructions</textarea>
+    <br>
+    <label>New rating
+        <input type="number" name="newRating" class="form-control" value="@Model.Rating" max="10" min="0">
+    </label><br>
+    <button class="btn btn-success" type="submit">Submit</button>
+</form>

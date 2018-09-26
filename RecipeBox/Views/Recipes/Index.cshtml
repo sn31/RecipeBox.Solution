@@ -4,41 +4,36 @@ Layout = "_Layout";
 
 <h1>Recipe Records</h1>
 
-<button onclick="window.location.href='/'" class="btn btn-success">Go Home</button><hr>
+<button onclick="window.location.href='/'" class="btn btn-success">Go Home</button>
+<button onclick="window.location.href='/recipes/new'" class="btn btn-success ml-2">Add Recipe</button><hr>
 <div class="container">
     <div class="row">
         <div class="col">
             <h6>Name</h6>
         </div>
         <div class="col">
-             <h6>Instructions</h6>
-        </div>
-        <div class="col">
-             <h6>Tags</h6>
+            <h6>Tags</h6>
         </div>
          <div class="col">
-             <h6>Rating</h6>
+            <h6>Rating</h6>
         </div>
         <div class="col">
-             <h6>Update Recipe</h6>
+            <h6>Update Recipe</h6>
         </div>
         <div class="col">
-             <h6>Delete Recipe</h6>
+            <h6>Delete Recipe</h6>
         </div>
     </div>
-    @foreach(var recipe in @Model["recipes"])
+    @foreach(var recipe in @Model)
     {
         <div class="row">
             <div class="col">
-                <p>@recipe.Name</p>
+                <p><a href="/recipes/@recipe.Id">@recipe.Name</a></p>
             </div>
             <div class="col">
-                <p>@recipe.Instructions</p>
-            </div>
-            <div class="col">
-                @foreach(var category in @Model["categories"])
+                @foreach(var category in @recipe.GetCategories())
                 {
-                    <p>@category.categoryName</p>
+                    <p>@category.Name</p>
                 }
             </div>
             <div class="col">
