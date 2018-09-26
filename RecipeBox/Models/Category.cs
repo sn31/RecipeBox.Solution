@@ -117,6 +117,8 @@ namespace RecipeBox.Models {
             conn.Open();
 
             MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"DELETE FROM tags WHERE category_id = @id;";
+            cmd.Parameters.AddWithValue("@id", id);
             cmd.CommandText = @"DELETE FROM categories WHERE id = @id;";
             cmd.Parameters.AddWithValue("@id", id);
             cmd.ExecuteNonQuery();
@@ -133,7 +135,27 @@ namespace RecipeBox.Models {
             conn.Open();
 
             MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"DELETE FROM tags;";
+            cmd.ExecuteNonQuery();
             cmd.CommandText = @"DELETE FROM categories;";
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+
+        public void AddRecipe(int recipeId)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"INSERT INTO tags (category_id, recipe_id) VALUES (@categoryId, @recipeId);";
+            cmd.Parameters.AddWithValue("@categoryId", this.Id);
+            cmd.Parameters.AddWithValue("@recipeId", recipeId);
             cmd.ExecuteNonQuery();
 
             conn.Close();

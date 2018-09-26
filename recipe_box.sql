@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Sep 26, 2018 at 06:40 PM
+-- Generation Time: Sep 26, 2018 at 07:15 PM
 -- Server version: 5.6.35
 -- PHP Version: 7.0.15
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `recipe_box`
 --
+CREATE DATABASE IF NOT EXISTS `recipe_box` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `recipe_box`;
 
 -- --------------------------------------------------------
 
