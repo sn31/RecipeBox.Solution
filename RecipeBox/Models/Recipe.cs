@@ -58,7 +58,7 @@ namespace RecipeBox.Models
                 conn.Dispose();
             }
         }
-        public List<Recipe> GetAll()
+        public static List<Recipe> GetAll()
         {
             MySqlConnection conn = DB.Connection();
             conn.Open();
@@ -128,7 +128,7 @@ namespace RecipeBox.Models
             MySqlConnection conn = DB.Connection();
             conn.Open();
             MySqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = @"DELETE FROM recipes";
+            cmd.CommandText = @"DELETE FROM tags; DELETE FROM recipes";
 
             cmd.ExecuteNonQuery();
 
