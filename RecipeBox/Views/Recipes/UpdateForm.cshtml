@@ -1,16 +1,26 @@
 @{
 Layout = "_Layout";
 }
-<h1>Update Recipe</h1>
-<form class="form-group" action='/recipes/update/@Model.Id' method='post'>
+<h1 class="my-3">Update Recipe</h1>
+<form class="form-group" action='/recipes/update/@Model["recipe"].Id' method='post'>
     <label>New name
-        <input type="text" name="newName" class="form-control" value="@Model.Name" required>
+        <input type="text" name="newName" class="form-control" value='@Model["recipe"].Name' required>
     </label><br>
+    <span>Tags: </span>
+    @{int i = 0;}
+    @foreach (var category in @Model["recipe"].GetCategories())
+    {
+        <a href="/categories/@category.Id" class='badge badge-@Model["tagColors"][@i]'>@category.Name</a>
+        i = (i > 7) ? 0: (i+1);
+        
+    }
+    <br>
     <label for="newInstructions">New instructions</label>
-    <textarea rows="8" col ="8" name="newInstructions" class="form-control" id="newInstructions" required>@Model.Instructions</textarea>
+    <textarea rows="8" col ="8" name="newInstructions" class="form-control" id="newInstructions" required>@Model["recipe"].Instructions</textarea>
     <br>
     <label>New rating
-        <input type="number" name="newRating" class="form-control" value="@Model.Rating" max="10" min="0">
+        <input type="number" name="newRating" class="form-control" value='@Model["recipe"].Rating' max="10" min="0">
     </label><br>
-    <button class="btn btn-success" type="submit">Submit</button>
+    <button class="btn btn-success my-2" type="submit">Submit</button>
+    <a href="/recipes" class="btn btn-secondary ml-2 my-2">Back to recipes</a>
 </form>

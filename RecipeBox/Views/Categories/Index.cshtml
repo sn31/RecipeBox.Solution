@@ -1,0 +1,50 @@
+@{
+Layout = "_Layout";
+}
+
+<h1 class="mt-3">Categories</h1>
+
+
+<button onclick="window.location.href='/categories/new'" class="btn btn-success my-2">Add Category</button>
+<button onclick="window.location.href='/'" class="btn btn-secondary ml-2 my-2">Go Home</button>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h6>Name</h6>
+        </div>
+        <div class="col">
+            <h6>Recipes</h6>
+        </div>
+        <div class="col">
+            <h6>Update Category</h6>
+        </div>
+        <div class="col">
+            <h6>Delete Category</h6>
+        </div>
+    </div>
+    @foreach(var category in @Model)
+    {
+        <div class="row">
+            <div class="col">
+                <p><a href="/categories/@category.Id">@category.Name</a></p>
+            </div>
+            <div class="col">
+                @foreach(var recipe in @category.GetRecipes())
+                {
+                    <p><a href="/recipes/@recipe.Id">@recipe.Name</a></p>
+                }
+            </div>
+            <div class="col">
+               <form class="form-group" action='/categories/update/@category.Id' method='get'>
+                   <button class="btn btn-info" type="submit">Update Category</button>
+               </form>
+            </div>
+            <div class="col">
+                <form class="form-group" action='/categories/delete/@category.Id' method='post'>
+                   <button class="btn btn-danger" type="submit">Delete Category</button>
+               </form>
+            </div>
+        </div>
+    }
+</div>
