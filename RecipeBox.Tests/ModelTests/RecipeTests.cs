@@ -127,6 +127,18 @@ namespace RecipeBox.Tests
             //Assert
             CollectionAssert.AreEqual(testCategoryRecipes, resultCategoryRecipes);
         }
+        [TestMethod]
+        public void Update_UpdateRecipeWithNewInfo_Recipe()
+        {
+             Recipe testRecipe = new Recipe("cookies","foo bar", 1);
+             testRecipe.Save();
+             testRecipe.Update("Milk","foo bar",2);
+
+             string result = testRecipe.Name;
+
+             Assert.AreEqual("Milk",result);
+
+        }
 
     }
 }

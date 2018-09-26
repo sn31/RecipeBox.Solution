@@ -143,12 +143,16 @@ namespace RecipeBox.Models
             MySqlConnection conn = DB.Connection();
             conn.Open();
             MySqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = @"UPDATE recipes SET name = @newName,instructions = @newInstructions, rating = @newRating WHERE id = @thisId;"; //This might not work!!!!
+            cmd.CommandText = @"UPDATE recipes SET name = @newName,instructions = @newInstructions, rating = @newRating WHERE id = @thisId;";
             cmd.Parameters.AddWithValue("@newName", Name);
             cmd.Parameters.AddWithValue("@newInstructions", Instructions);
             cmd.Parameters.AddWithValue("@newRating", Rating);
             cmd.Parameters.AddWithValue("@thisId", this.Id);
 
+            this.Name = Name;
+            this.Instructions = Instructions;
+            this.Rating = Rating;
+            
             cmd.ExecuteNonQuery();
             conn.Close();
             if (conn != null)
