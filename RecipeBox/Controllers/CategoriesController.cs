@@ -24,6 +24,13 @@ namespace RecipeBox.Controllers
       dict.Add("recipes",allRecipes);
       return RedirectToAction("Details");
     }
+    [HttpPost("/categories/{categoryId}/remove-from-category")]
+    public ActionResult RemoveRecipeFromCategory(int categoryId, int recipeId)
+    {
+      Category foundCategory = Category.Find(categoryId);
+      foundCategory.RemoveRecipe(recipeId);
+      return RedirectToAction("Details");
+    }
     [HttpGet("/categories/{categoryId}")]
     public ActionResult Details(int categoryId)
     {

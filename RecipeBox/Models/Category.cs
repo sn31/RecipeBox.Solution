@@ -164,7 +164,23 @@ namespace RecipeBox.Models {
                 conn.Dispose();
             }
         }
+        public void RemoveRecipe(int recipeId)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
 
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"DELETE FROM tags WHERE recipe_id = @recipeId AND category_id = @categoryId;";
+            cmd.Parameters.AddWithValue("@categoryId", this.Id);
+            cmd.Parameters.AddWithValue("@recipeId", recipeId);
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
         public List <Recipe> GetRecipes()
         {
             List <Recipe> allRecipes = new List <Recipe> {};

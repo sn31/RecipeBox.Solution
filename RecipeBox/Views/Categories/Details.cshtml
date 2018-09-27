@@ -40,8 +40,9 @@ Layout = "_Layout";
               </form>
           </div>
           <div class="col">
-              <form class="form-group" action='/recipes/delete/@recipe.Id' method='post'>
-                  <button class="btn btn-danger" type="submit">Delete Recipe</button>
+              <form class="form-group" action='/categories/@Model["category"].Id/remove-from-category' method='post'>
+              <input type="hidden" value = "@recipe.Id" name="recipeId">
+                  <button class="btn btn-danger" type="submit">Remove Recipe</button>
               </form>
           </div>
       </div>
