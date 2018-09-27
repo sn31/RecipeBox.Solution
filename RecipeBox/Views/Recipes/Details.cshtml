@@ -6,14 +6,20 @@ Layout = "_Layout";
 
 <button onclick="window.location.href='/'" class="btn btn-secondary my-2">Go Home</button>
 <button onclick="window.location.href='/recipes'" class="btn btn-secondary ml-2 my-2">Go back to previous page</button><hr>
-<h3>Tags: 
+<p>Tags: 
   @{int i = 0;}
   @foreach (var category in @Model["recipe"].GetCategories())
   {
     <a href="/categories/@category.Id" class='badge badge-@Model["tagColors"][@i]'>@category.Name</a>
     i = (i > 7) ? 0: (i+1);
   }
-</h3>
+</p>
+<p>Ingredients: 
+  @foreach(var ingredient in @Model["ingredients"])
+  {
+    <span class="">@ingredient.Name </span>
+  }
+</p>
 @{string[] instructions = @Model["recipe"].Instructions.Split('\n');
   foreach (string line in instructions)
   {
