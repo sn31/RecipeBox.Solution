@@ -203,5 +203,49 @@ namespace RecipeBox.Models
             }
         return allCategories;
         }
+        public void AddIngredient(Ingredient ingredient)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"INSERT INTO recipes_ingredients (recipe_id, ingredient_id) VALUES (@recipe_id, @ingredient_id);";
+            cmd.Parameters.AddWithValue("@recipe_id", this.Id);
+            cmd.Parameters.AddWithValue("@ingredient_id", ingredient.Id);
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+        
+        public List <Ingredient> GetIngredients()
+        {
+            List <Ingredient> allIngredients = new List <Ingredient> {};
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT recipes_ingredients.id, recipes_ingredients.recipe_id, recipes_ingredients.ingredient_id, ingredients.name FROM ingredients JOIN recipes_ingredients ON ingredients.id = recipes_ingredients.ingredient_id WHERE recipes_ingredients.recipe_id = @id;";
+            cmd.Parameters.AddWithValue("@id", this.Id);
+            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+
+            while (rdr.Read())
+            {
+                int id = rdr.GetInt32(2);
+                string name = rdr.GetString(3);
+                Ingredient foundIngredient = new Ingredient(name, id);
+                allIngredients.Add(foundIngredient);
+            }
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+            return allIngredients;
+        }
     }
 }

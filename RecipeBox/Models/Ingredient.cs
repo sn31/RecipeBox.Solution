@@ -39,8 +39,10 @@ namespace RecipeBox.Models {
             conn.Open();
 
             MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"SELECT * FROM ingredients;";
-
+            cmd.CommandText = @"INSERT INTO ingredients (name) VALUES (@name);";
+            cmd.Parameters.AddWithValue("@name", this.Name);
+            cmd.ExecuteNonQuery();
+            this.Id = (int) cmd.LastInsertedId;
 
             conn.Close();
             if (conn != null)

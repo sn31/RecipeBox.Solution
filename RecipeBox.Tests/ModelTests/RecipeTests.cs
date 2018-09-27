@@ -16,6 +16,7 @@ namespace RecipeBox.Tests
         {
             Recipe.DeleteAll();
             Category.DeleteAll();
+            Ingredient.DeleteAll();
         }
 
         [TestMethod]
@@ -57,7 +58,7 @@ namespace RecipeBox.Tests
             testRecipe.Save();
 
             //Act
-            Recipe savedRecipe = Recipe.GetAll() [0];
+            Recipe savedRecipe = Recipe.GetAll()[0];
 
             int result = savedRecipe.Id;
             int testId = testRecipe.Id;
@@ -80,7 +81,7 @@ namespace RecipeBox.Tests
         [TestMethod]
         public void AddCategory_AddsCategoryToRecipe_CategoryList()
         {
-            Recipe testRecipe = new Recipe("Cow Cake", "Some steps",4);
+            Recipe testRecipe = new Recipe("Cow Cake", "Some steps", 4);
             testRecipe.Save();
 
             Category testCategory = new Category("Junk Food");
@@ -95,7 +96,7 @@ namespace RecipeBox.Tests
         [TestMethod]
         public void GetCategories_ReturnAllRecipeCategories_CategoriesList()
         {
-            Recipe testRecipe = new Recipe("Cow Cake", "Some steps",4);
+            Recipe testRecipe = new Recipe("Cow Cake", "Some steps", 4);
             testRecipe.Save();
 
             Category testCategory1 = new Category("Junk Food");
@@ -106,7 +107,7 @@ namespace RecipeBox.Tests
             testRecipe.AddCategory(testCategory1);
             testRecipe.AddCategory(testCategory2);
             List<Category> result = testRecipe.GetCategories();
-            List<Category> testList = new List<Category> { testCategory1,testCategory2 };
+            List<Category> testList = new List<Category> { testCategory1, testCategory2 };
 
             CollectionAssert.AreEqual(testList, result);
         }
@@ -116,7 +117,7 @@ namespace RecipeBox.Tests
             Category testCategory = new Category("Breakfast");
             testCategory.Save();
 
-            Recipe testRecipe = new Recipe("cookies","foo bar", 1);
+            Recipe testRecipe = new Recipe("cookies", "foo bar", 1);
             testRecipe.Save();
             testRecipe.AddCategory(testCategory);
             testRecipe.Delete();
@@ -130,14 +131,51 @@ namespace RecipeBox.Tests
         [TestMethod]
         public void Update_UpdateRecipeWithNewInfo_Recipe()
         {
-             Recipe testRecipe = new Recipe("cookies","foo bar", 1);
-             testRecipe.Save();
-             testRecipe.Update("Milk","foo bar",2);
+            Recipe testRecipe = new Recipe("cookies", "foo bar", 1);
+            testRecipe.Save();
+            testRecipe.Update("Milk", "foo bar", 2);
 
-             string result = testRecipe.Name;
+            string result = testRecipe.Name;
 
-             Assert.AreEqual("Milk",result);
+            Assert.AreEqual("Milk", result);
 
+        }
+        [TestMethod]
+        public void AddIngredient_AddIngredientCorrectly()
+        {
+            //Arrange
+            Recipe testRecipe = new Recipe("cookies", "foo bar", 1);
+            testRecipe.Save();
+            Ingredient newIngredient1 = new Ingredient("Egg");
+            newIngredient1.Save();
+            List <Ingredient> expectedIngredients = new List <Ingredient> {newIngredient1};
+
+            //Act
+            testRecipe.AddIngredient(newIngredient1);
+            List <Ingredient> ingredients = testRecipe.GetIngredients();
+
+            //Assert
+            CollectionAssert.AreEqual(expectedIngredients, ingredients);
+        }
+        [TestMethod]
+        public void GetIngredients_GetAllIngredientsCorrectly()
+        {
+            //Arrange
+            Recipe testRecipe = new Recipe("cookies", "foo bar", 1);
+            testRecipe.Save();
+            Ingredient newIngredient1 = new Ingredient("Egg");
+            newIngredient1.Save();
+            Ingredient newIngredient2 = new Ingredient("Milk");
+            newIngredient2.Save();
+            List <Ingredient> expectedIngredients = new List <Ingredient> {newIngredient1, newIngredient2};
+            testRecipe.AddIngredient(newIngredient1);
+            testRecipe.AddIngredient(newIngredient2);
+
+            //Act
+            List <Ingredient> ingredients = testRecipe.GetIngredients();
+
+            //Assert
+            CollectionAssert.AreEqual(expectedIngredients, ingredients);
         }
 
     }
