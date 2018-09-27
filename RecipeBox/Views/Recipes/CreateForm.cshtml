@@ -9,6 +9,14 @@ Layout = "_Layout";
     <label>Instructions</label>
     <textarea rows="8" col ="8" name="newInstructions" class="form-control" required></textarea>
     <br>
+    <label>Tags<br>
+        <select id="categorySelect" name="categorySelect">
+            @foreach (var category in @Model)
+            {
+            <option value="@category.Id">@category.Name</option>
+            }
+        </select>
+    </label><br>
     <label>Rating
         <input type="number" name="newRating" class="form-control" max="10" min="0">
     </label><br>
