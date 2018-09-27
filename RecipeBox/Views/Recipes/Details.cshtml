@@ -6,12 +6,8 @@ Layout = "_Layout";
 
 <button onclick="window.location.href='/'" class="btn btn-secondary my-2">Go Home</button>
 <button onclick="window.location.href='/recipes'" class="btn btn-secondary ml-2 my-2">Go back to previous page</button><hr>
-<<<<<<< HEAD
-<p>Tags: 
-=======
 <div class="recipe-details">
 <h3>Tags: 
->>>>>>> b4e62f267adc1481583319599ddd5680e6db2994
   @{int i = 0;}
   @foreach (var category in @Model["recipe"].GetCategories())
   {

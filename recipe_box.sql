@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Sep 26, 2018 at 07:15 PM
+-- Generation Time: Sep 27, 2018 at 11:46 PM
 -- Server version: 5.6.35
 -- PHP Version: 7.0.15
 
@@ -33,6 +33,13 @@ CREATE TABLE `categories` (
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`) VALUES
+(2, 'Main dish');
+
 -- --------------------------------------------------------
 
 --
@@ -43,6 +50,16 @@ CREATE TABLE `ingredients` (
   `id` int(32) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `ingredients`
+--
+
+INSERT INTO `ingredients` (`id`, `name`) VALUES
+(1, 'egg'),
+(2, 'milk'),
+(3, 'salt'),
+(4, 'pepper');
 
 -- --------------------------------------------------------
 
@@ -57,6 +74,14 @@ CREATE TABLE `recipes` (
   `rating` int(32) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `recipes`
+--
+
+INSERT INTO `recipes` (`id`, `name`, `instructions`, `rating`) VALUES
+(2, 'Pancake', '1. In a large bowl, sift together the flour, baking powder, salt and sugar. Make a well in the center and pour in the milk, egg and melted butter; mix until smooth.\r\n2. Heat a lightly oiled griddle or frying pan over medium high heat. Pour or scoop the batter onto the griddle, using approximately 1/4 cup for each pancake.', 8),
+(4, 'Scrambled eggs', '1. Foo\r\n2. Bar', 8);
+
 -- --------------------------------------------------------
 
 --
@@ -69,6 +94,16 @@ CREATE TABLE `recipes_ingredients` (
   `ingredient_id` int(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `recipes_ingredients`
+--
+
+INSERT INTO `recipes_ingredients` (`id`, `recipe_id`, `ingredient_id`) VALUES
+(3, 4, 1),
+(4, 4, 2),
+(5, 4, 3),
+(6, 4, 4);
+
 -- --------------------------------------------------------
 
 --
@@ -80,6 +115,14 @@ CREATE TABLE `tags` (
   `category_id` int(32) NOT NULL,
   `recipe_id` int(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tags`
+--
+
+INSERT INTO `tags` (`id`, `category_id`, `recipe_id`) VALUES
+(2, 2, 2),
+(4, 2, 4);
 
 --
 -- Indexes for dumped tables
@@ -127,27 +170,27 @@ ALTER TABLE `tags`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `ingredients`
 --
 ALTER TABLE `ingredients`
-  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `recipes`
 --
 ALTER TABLE `recipes`
-  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `recipes_ingredients`
 --
 ALTER TABLE `recipes_ingredients`
-  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `tags`
 --
 ALTER TABLE `tags`
-  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- Constraints for dumped tables
 --
