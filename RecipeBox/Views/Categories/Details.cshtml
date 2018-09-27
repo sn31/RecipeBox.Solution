@@ -17,33 +17,35 @@ Layout = "_Layout";
     <button type="submit" class="btn btn-info">Assign</button>
     </form>
   <hr>
-  <div class="row">
-      <div class="col">
-          <h6>Name</h6>
-      </div>
-      <div class="col">
-          <h6>Update</h6>
-      </div>
-      <div class="col">
-          <h6>Delete</h6>
-      </div>
+  <div class="page-content">
+    <div class="row">
+        <div class="col">
+            <h6>Name</h6>
+        </div>
+        <div class="col">
+            <h6>Update</h6>
+        </div>
+        <div class="col">
+            <h6>Delete</h6>
+        </div>
+    </div>
+    @foreach(var recipe in @Model["category"].GetRecipes())
+    {
+        <div class="row">
+            <div class="col">
+                <p><a href="/recipes/@recipe.Id">@recipe.Name</a></p>
+            </div>
+            <div class="col">
+                <form class="form-group" action='/recipes/update/@recipe.Id' method='get'>
+                    <button class="btn btn-info" type="submit">Update Recipe</button>
+                </form>
+            </div>
+            <div class="col">
+                <form class="form-group" action='/categories/@Model["category"].Id/remove-from-category' method='post'>
+                <input type="hidden" value = "@recipe.Id" name="recipeId">
+                    <button class="btn btn-danger" type="submit">Remove Recipe</button>
+                </form>
+            </div>
+        </div>
+    }
   </div>
-  @foreach(var recipe in @Model["category"].GetRecipes())
-  {
-      <div class="row">
-          <div class="col">
-              <p><a href="/recipes/@recipe.Id">@recipe.Name</a></p>
-          </div>
-          <div class="col">
-              <form class="form-group" action='/recipes/update/@recipe.Id' method='get'>
-                  <button class="btn btn-info" type="submit">Update Recipe</button>
-              </form>
-          </div>
-          <div class="col">
-              <form class="form-group" action='/categories/@Model["category"].Id/remove-from-category' method='post'>
-              <input type="hidden" value = "@recipe.Id" name="recipeId">
-                  <button class="btn btn-danger" type="submit">Remove Recipe</button>
-              </form>
-          </div>
-      </div>
-  }

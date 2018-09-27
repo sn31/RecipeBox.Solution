@@ -4,6 +4,9 @@ body{
     background-repeat: none;
     background-size: cover;
     font-family: 'Slabo 27px', serif;
+    font-size: 20px;
+    color: black;
+    text-align: center;
 }
 h1 {
     font-family: 'Permanent Marker', cursive;
@@ -40,3 +43,43 @@ button:hover {
     background-color: rgb(119, 172, 106);
     color: white;
   }
+
+.row
+{
+    background: rgba(184, 176, 176, 0.7);
+    padding-top: 1vh;
+}
+.special-row
+{
+    background-color: white;
+    margin-bottom: 1%;
+    color:rgb(184, 176, 176)
+   
+}
+
+h6 {
+    font-weight: 800;
+    font-size: 30px;
+}
+
+a {
+    color:black;
+}
+
+.recipe-details
+{
+    background: rgba(184, 176, 176, 0.7);
+
+}
+
+input[type="text"],input[type="number"] {
+
+    background: rgba(231, 217, 217, 0.7);
+  
+}
+
+#textArea {
+
+    background: rgba(231, 217, 217, 0.7);
+  
+}
