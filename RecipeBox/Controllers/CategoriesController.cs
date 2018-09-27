@@ -13,12 +13,28 @@ namespace RecipeBox.Controllers
       List <Category> allCategories = Category.GetAll();
       return View(allCategories);
     }
+    [HttpPost("/categories/{categoryId}")]
+    public ActionResult DetailsAddRecipe(int categoryId, int recipeSelect)
+    {
+      Dictionary <string, object> dict = new Dictionary<string, object>{};
+      Category foundCategory = Category.Find(categoryId);
+      foundCategory.AddRecipe(recipeSelect);
+      List<Recipe> allRecipes = Recipe.GetAll();
+      dict.Add("category",foundCategory);
+      dict.Add("recipes",allRecipes);
+      return RedirectToAction("Details");
+    }
     [HttpGet("/categories/{categoryId}")]
     public ActionResult Details(int categoryId)
     {
+      Dictionary <string, object> dict = new Dictionary<string, object>{};
       Category foundCategory = Category.Find(categoryId);
-      return View(foundCategory);
+      List<Recipe> allRecipes = Recipe.GetAll();
+      dict.Add("category",foundCategory);
+      dict.Add("recipes",allRecipes);
+      return View(dict);
     }
+    
     [HttpGet("/categories/new")]
     public ActionResult CreateForm()
     {
@@ -50,5 +66,6 @@ namespace RecipeBox.Controllers
       Category.Delete(categoryId);
       return RedirectToAction("Index");
     }
+
   }
 }
