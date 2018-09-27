@@ -235,7 +235,7 @@ namespace RecipeBox.Models
             while (rdr.Read())
             {
                 int id = rdr.GetInt32(2);
-                string name = rdr.GetString(3);
+                string name = Formatting.ToTitleCase(rdr.GetString(3));
                 Ingredient foundIngredient = new Ingredient(name, id);
                 allIngredients.Add(foundIngredient);
             }

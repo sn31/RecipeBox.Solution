@@ -43,7 +43,7 @@ namespace RecipeBox.Models {
             cmd.Parameters.AddWithValue("@name", this.Name);
             cmd.ExecuteNonQuery();
             this.Id = (int) cmd.LastInsertedId;
-
+           
             conn.Close();
             if (conn != null)
             {
@@ -95,6 +95,36 @@ namespace RecipeBox.Models {
                 string name = rdr.GetString(1);
                 foundIngredient.Id = id;
                 foundIngredient.Name = name;
+            }
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+            return foundIngredient;
+        }
+        public static Ingredient Find(string ingredientName)
+        {
+           //Cannot override static method but we can overload it.
+           MySqlConnection conn = DB.Connection();
+            conn.Open();
+
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT * FROM ingredients WHERE name=@name;";
+            cmd.Parameters.AddWithValue("@name", ingredientName);
+            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+
+            Ingredient foundIngredient = new Ingredient("");
+            if (rdr.HasRows == false)
+            {
+                return null;
+            }
+            while (rdr.Read())
+            {
+                int id = rdr.GetInt32(0);
+                foundIngredient.Id = id;
+                foundIngredient.Name = ingredientName;
             }
 
             conn.Close();
