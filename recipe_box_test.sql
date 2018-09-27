@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Sep 26, 2018 at 07:16 PM
+-- Generation Time: Sep 27, 2018 at 11:47 PM
 -- Server version: 5.6.35
 -- PHP Version: 7.0.15
 
@@ -127,27 +127,27 @@ ALTER TABLE `tags`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `ingredients`
 --
 ALTER TABLE `ingredients`
-  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `recipes`
 --
 ALTER TABLE `recipes`
-  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `recipes_ingredients`
 --
 ALTER TABLE `recipes_ingredients`
-  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tags`
 --
 ALTER TABLE `tags`
-  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- Constraints for dumped tables
 --
