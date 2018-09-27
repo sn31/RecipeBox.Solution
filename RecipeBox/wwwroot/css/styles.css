@@ -1,0 +1,42 @@
+body{
+    height: 100vh;
+    background-image: url(/img/recipe.jpg);
+    background-repeat: none;
+    background-size: cover;
+    font-family: 'Slabo 27px', serif;
+}
+h1 {
+    font-family: 'Permanent Marker', cursive;
+}
+.frontPage
+{
+    padding-top: 20vh;
+    text-align: center;
+}
+
+.frontPageHeader
+{
+    padding-top: 30vh;
+    text-align: center;
+    font-size: 70px;
+}
+
+button {
+  
+    display: block;
+    margin-right:auto;
+    margin-left: auto;
+    background: pink;
+    padding: 0.5em;
+    border: 0;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 1.2em;
+    font-weight: 400;
+  }
+
+  
+button:hover {
+    background-color: rgb(119, 172, 106);
+    color: white;
+  }
